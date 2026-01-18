@@ -1,11 +1,11 @@
 name: Blog Project CI/CD
 
-# 触发条件：当 main 分支有 push 时执行
+# 触发条件：当 master 分支有 push 时执行
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "master" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "master" ]
   workflow_dispatch:
   
 jobs:
