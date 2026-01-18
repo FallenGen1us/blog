@@ -1,0 +1,50 @@
+name: Blog Project CI/CD
+
+# 触发条件：当 main 分支有 push 时执行
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-deply:
+    runs-on: ubuntu-22.04  # 使用 GitHub 提供的虚拟机
+
+    steps:
+    - name: 检出代码
+      uses: actions/checkout@v6.0.2
+
+    - name: 设置 Node.js 环境
+      uses: actions/setup-node@v6.2.0
+      with:
+        node-version: '24'
+        cache: 'npm' # 开启缓存，加快构建速度
+
+    - name: 安装依赖并构建
+      run: |
+        npm install
+        npm run docs:build
+
+    - name: 清空远程博客目录
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.SERVER_IP }}
+        username: ${{ secrets.SERVER_USER }}
+        key: ${{ secrets.SERVER_SSH_KEY }}
+        script: |
+          # 使用 -f 即使目录为空也不会报错
+          rm -rf /home/ubuntu/data/nginx/html/blog/*
+
+    - name: 发送文件到服务器 (SCP)
+      uses: appleboy/scp-action@v1
+      with:
+        host: ${{ secrets.SERVER_IP }}
+        username: ${{ secrets.SERVER_USER }}
+        key: ${{ secrets.SERVER_SSH_KEY }}
+        # 源目录：VitePress 默认打包后的路径
+        source: ".vitepress/dist/*"
+        # 目标目录
+        target: "/home/ubuntu/data/nginx/html/blog"
+        # 这一步会自动包含 .vitepress/dist 路径，我们通常需要去掉前缀
+        strip_components: 2
