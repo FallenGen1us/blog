@@ -12,7 +12,7 @@ hero:
   actions:
     - theme: brand
       text: 📖 学习笔记
-      link: /学习笔记
+      link: /notes
     - theme: alt
       text: 🛠️ 技术项目
       link: /projects

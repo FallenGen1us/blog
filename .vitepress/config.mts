@@ -15,7 +15,7 @@ const vitePressOptions = {
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
+      { icon: 'github', link: 'https://github.com/FallenGen1us/blog' }
     ]
   }
 }
