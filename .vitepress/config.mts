@@ -2,7 +2,6 @@ import { defineConfig } from 'vitepress'
 import {withSidebar} from 'vitepress-sidebar';
 
 const vitePressOptions = {
-  base: '/blog/',
   title: "FallenGen1us的技术博客",
   description: "记录学习笔记、技术项目、个人简介。",
   themeConfig: {
