@@ -3,7 +3,7 @@
 layout: home
 
 hero:
-  name: "FallenGen1us的技术博客"
+  name: "FallenGen1us"
   text: "浮生若梦，代码为舟"
   tagline: 专注于 Java 后端开发、分布式架构与性能调优
   image:
