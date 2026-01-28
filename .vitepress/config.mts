@@ -15,7 +15,12 @@ const vitePressOptions = {
 
     socialLinks: [
       { icon: 'github', link: 'https://github.com/FallenGen1us/blog' }
-    ]
+    ],
+
+    footer: {
+      message: '基于 MIT 许可发布',
+      copyright: '版权所有 © 2024-至今 FallenGen1us | <a href="https://beian.miit.gov.cn/" target="_blank">辽ICP备2026001818号-1</a>'
+    }
   }
 }
 
